@@ -47,7 +47,7 @@ const Hero: React.FC<HeroProps> = ({ isSticky }) => {
             <img
               src={
                 process.env.PUBLIC_URL +
-                "/images/portrait-happy-excited-man-holding-laptop-computer.png"
+                "/images/portrait-happy-excited-man-holding-laptop-computer1-removebg-preview.png"
               }
               className="hero-image img-fluid"
               alt="Portfolio main visual"
