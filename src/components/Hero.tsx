@@ -45,10 +45,7 @@ const Hero: React.FC<HeroProps> = ({ isSticky }) => {
           <div className="col-lg-5 col-12 position-relative">
             <div className="hero-image-wrap"></div>
             <img
-              src={
-                process.env.PUBLIC_URL +
-                "/images/portrait-happy-excited-man-holding-laptop-computer1-removebg-preview.png"
-              }
+              src={process.env.PUBLIC_URL + "/images/man_image2.png"}
               className="hero-image img-fluid"
               alt="Portfolio main visual"
             />

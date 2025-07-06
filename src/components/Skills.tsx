@@ -102,7 +102,7 @@ const Skills: React.FC = () => {
               <img
                 src={
                   process.env.PUBLIC_URL +
-                  "/images/handshake-man-woman-after-signing-business-contract-closeup.jpg"
+                  "/images/handshake-man-woman-after-signing-business-contract-closeup.png"
                 }
                 className="avatar-image img-fluid"
                 alt="Skills section visual"

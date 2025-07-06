@@ -117,10 +117,7 @@ const Projects: React.FC = () => {
           <div className="col-lg-8 col-md-8 col-12 ms-auto">
             <div className="section-title-wrap d-flex justify-content-center align-items-center mb-4">
               <img
-                src={
-                  process.env.PUBLIC_URL +
-                  "/images/white-desk-work-study-aesthetics.jpg"
-                }
+                src={process.env.PUBLIC_URL + "/images/projectsImage.png"}
                 className="avatar-image img-fluid"
                 alt=""
               />

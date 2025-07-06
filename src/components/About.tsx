@@ -63,7 +63,7 @@ const About: React.FC = () => {
             {/* Certifications Section */}
             <div className="profile-thumb mb-4">
               <div className="profile-title">
-                <h4 className="mb-0">Certifications (2021)</h4>
+                <h4 className="mb-0">Certifications</h4>
               </div>
               <div className="profile-body">
                 <div className="info-row">

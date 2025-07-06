@@ -7,8 +7,10 @@ interface NavbarProps {
 }
 
 const Navbar: React.FC<NavbarProps> = ({ isSticky, activeSection }) => {
-  // 1. New state to control the visibility of the dropdown
   const [isDropdownOpen, setDropdownOpen] = useState(false);
+
+  // Define the name of your CV file here
+  const cvFileName = "Enyimiri Chetachi Paschal _CV updated.pdf";
 
   return (
     <nav className={`navbar navbar-expand-lg ${isSticky ? "is-sticky" : ""}`}>
@@ -50,15 +52,12 @@ const Navbar: React.FC<NavbarProps> = ({ isSticky, activeSection }) => {
                 Home
               </a>
             </li>
-
-            {/* --- NEW DROPDOWN MENU FOR ABOUT --- */}
             <li
               className="nav-item dropdown"
               onMouseEnter={() => setDropdownOpen(true)}
               onMouseLeave={() => setDropdownOpen(false)}
             >
               <a
-                // The main link is active if we are in the 'About' section
                 className={`nav-link click-scroll ${
                   activeSection === "section_2" ? "active" : ""
                 }`}
@@ -89,7 +88,6 @@ const Navbar: React.FC<NavbarProps> = ({ isSticky, activeSection }) => {
                 )}
               </AnimatePresence>
             </li>
-
             <li className="nav-item">
               <a
                 className={`nav-link click-scroll ${
@@ -133,8 +131,24 @@ const Navbar: React.FC<NavbarProps> = ({ isSticky, activeSection }) => {
           </ul>
 
           <div className="d-lg-flex align-items-center d-none ms-auto">
-            <i className="navbar-icon bi-telephone-plus me-3"></i>
-            <a className="custom-btn btn" href="#section_7">
+            {/* --- DOWNLOAD CV BUTTON --- */}
+            <a
+              // The href points to your file in the public folder
+              href={`${process.env.PUBLIC_URL}/files/${cvFileName}`}
+              // The 'download' attribute tells the browser to download the file
+              // You can suggest a filename for the user here
+              download="Enyimiri-Paschal-CV.pdf"
+              className="custom-btn btn"
+            >
+              Download CV
+            </a>
+
+            <i className="navbar-icon bi-telephone-plus ms-3"></i>
+            <a
+              className="custom-btn btn"
+              href="#section_7"
+              style={{ marginLeft: "10px" }}
+            >
               +2347062641241
             </a>
           </div>
