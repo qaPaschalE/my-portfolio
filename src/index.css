@@ -1,0 +1,284 @@
+/* ---- General Fixes ---- */
+
+/* This class hides the main avatar in the hero section when scrolling */
+.avatar-hidden {
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all 0.4s ease-in-out;
+}
+
+/* This rule prevents the page content from jumping up when the navbar becomes sticky */
+nav.is-sticky + main {
+  padding-top: 130px;
+}
+
+/* ---- Sticky Navbar Overrides ---- */
+
+/* Forces the navbar container to be transparent when it is NOT sticky */
+.navbar:not(.is-sticky) {
+  background: transparent !important;
+}
+.navbar:not(.is-sticky) .container {
+  background: transparent !important;
+}
+
+/* This rule makes the main sticky container stick to the top */
+.is-sticky {
+  position: fixed !important;
+  top: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  background: transparent !important;
+  box-shadow: none !important;
+  margin-top: 1rem !important;
+}
+
+/* This rule styles the inner .container as the visible "pill" on scroll */
+.is-sticky .container {
+  background: var(--white-color) !important;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15) !important;
+  border-radius: 50px !important;
+  animation: popIn 0.4s ease-out;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* This makes the phone button green when the navbar is sticky */
+.is-sticky .custom-btn {
+  border-color: #14b789;
+  color: #14b789;
+}
+
+.is-sticky .custom-btn:hover {
+  background-color: #14b789;
+  color: #ffffff;
+}
+
+/* ---- Animations ---- */
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* ---- Skills Section Override ---- */
+
+/* Add this new rule specifically for the Playwright icon */
+.icon-playwright {
+  filter: grayscale(100%); /* Makes it black and white by default */
+  opacity: 0.6;
+}
+
+/* On hover, we remove the filter to reveal the natural colors */
+.icon-playwright:hover {
+  filter: grayscale(0%);
+  opacity: 1;
+}
+/* This styles the main card */
+.services-thumb {
+  padding: 30px 20px 100px 20px;
+  min-height: 250px;
+  position: relative;
+}
+
+/* This styles the title area */
+.services-thumb h5 {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.4;
+  min-height: 65px;
+}
+
+/*
+  UPDATED RULE: This rule now forcefully resets the rotation and
+  other old styles from the template, ensuring a straight layout.
+*/
+.services-icon-wrap {
+  /* Resetting template styles */
+  transform: rotate(0) translateY(0) !important;
+  width: auto !important;
+  height: auto !important;
+  border: none !important;
+
+  /* Positioning the icon tray at the bottom */
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  gap: 12px;
+}
+
+/* Default state for the small, monochrome icons */
+.service-icon {
+  font-size: 25px;
+  color: var(--p-color);
+  opacity: 0.6;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+/* The "pop up" animation on hover */
+.service-icon:hover {
+  opacity: 1;
+  transform: scale(1.4) translateY(-5px);
+  z-index: 2;
+}
+
+/* The empty space in the middle for the expanded icon */
+.skill-icon-animation-area {
+  position: absolute;
+  top: 110px;
+  left: 0;
+  right: 0;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+}
+
+/* The large, colored icon that appears on hover */
+.expanded-icon {
+  font-size: 64px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* ---- Projects Section Override ---- */
+
+.project-tag-icon {
+  margin-right: 8px;
+  vertical-align: text-bottom;
+}
+
+/*
+  NEW, SMALLER STYLES: This makes the entire project div smaller.
+*/
+.projects-thumb {
+  padding: 15px; /* Reduced from 20px */
+  margin-top: 0;
+  min-height: 230px; /* Significantly reduced from 250px */
+  display: flex;
+  flex-direction: column; /* Helps align content vertically */
+}
+
+.projects-thumb .projects-info {
+  flex-grow: 1; /* Ensures the text content takes up available space */
+}
+
+.projects-thumb .projects-title {
+  font-size: 16px; /* Smaller title */
+  margin-bottom: 5px;
+}
+
+.projects-thumb p {
+  font-size: 13px; /* Smaller description text */
+  line-height: 1.4;
+  margin-bottom: 10px;
+}
+
+.projects-image {
+  /* Make the image inside the card smaller by default */
+  transform: rotate(5deg) translateY(15px) scale(0.8);
+  transition: all 0.3s ease;
+}
+
+.projects-thumb:hover .projects-image {
+  transform: rotate(0) translateY(0) scale(0.95);
+}
+/* ---- Education/About Section Alignment Override ---- */
+.profile-body {
+  padding: 15px 30px; /* Add some padding inside the box */
+}
+
+/* This creates the two-column row using Flexbox */
+.info-row {
+  display: flex;
+  align-items: flex-start; /* Aligns items to the top */
+  padding: 15px 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.info-row:last-child {
+  border-bottom: none; /* Removes the border from the last item */
+}
+
+/* This is the left-side "label" column */
+.info-label {
+  flex-basis: 140px; /* Sets a fixed width for the label */
+  flex-shrink: 0; /* Prevents the label from shrinking if text is long */
+  font-weight: var(--font-weight-bold);
+  color: var(--secondary-color);
+  padding-right: 15px; /* Adds space between label and value */
+}
+
+/* This is the right-side "value" column */
+.info-value {
+  flex-grow: 1; /* Allows the value to take up all remaining space */
+}
+/* ---- Custom Toastify Styles ---- */
+
+/* NEW: This rule targets the success toast's background banner
+  and sets it to your theme's green color.
+*/
+.Toastify__toast--success {
+  background-color: #14b789 !important;
+}
+
+/* This targets the success toast's progress bar */
+.Toastify__progress-bar--success {
+  background: linear-gradient(to right, #00b9bd, #4b45b2, #e1348b, #f68b35);
+}
+
+/* This makes sure the 'X' close button is visible on the new background */
+.Toastify__close-button {
+  color: white !important;
+}
+
+/* This styles the custom icon we passed */
+.Toastify__toast-icon > .bi {
+  font-size: 24px;
+}
+/* ---- Navbar Dropdown Styles ---- */
+
+/* This makes the nav item a positioning container for the dropdown */
+.nav-item.dropdown {
+  position: relative;
+}
+
+/* This styles the dropdown menu itself */
+.dropdown-menu {
+  display: block; /* We use display: block and control visibility with Framer Motion */
+  position: absolute;
+  top: 100%; /* Position it right below the parent "About" link */
+  left: 0;
+  background-color: var(--white-color);
+  border-radius: var(--border-radius-small);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 0.5rem 0;
+  margin-top: 0.5rem; /* Adds a little space between the link and the dropdown */
+  list-style: none;
+  min-width: 160px;
+}
+
+/* This styles each link inside the dropdown */
+.dropdown-item {
+  color: var(--p-color);
+  padding: 0.5rem 1.5rem;
+  display: block;
+  font-weight: var(--font-weight-medium);
+}
+
+.dropdown-item:hover {
+  background-color: var(--section-bg-color);
+  color: var(--secondary-color);
+}
