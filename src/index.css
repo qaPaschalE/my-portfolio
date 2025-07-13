@@ -470,7 +470,7 @@ nav.is-sticky + main {
   padding: 1rem;
 }
 .navbar-brand {
-  font-size: 28px;
+  font-size: 22px;
   font-weight: var(--font-weight-bold);
   color: var(--dark-color);
 }
