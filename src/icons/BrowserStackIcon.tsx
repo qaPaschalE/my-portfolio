@@ -1,0 +1,90 @@
+import React from "react";
+
+const BrowserStackIcon: React.FC<{ color?: string }> = ({ color = "gray" }) => (
+  <svg
+    width="24px"
+    height="24px"
+    viewBox="0 0 256 256"
+    version="1.1"
+    xmlns="http://www.w3.org/2000/svg"
+    preserveAspectRatio="xMidYMid"
+    fill={color}
+  >
+    <title>Browserstack</title>
+    <g id="SVGRepo_bgCarrier" stroke-width="0" />
+
+    <g
+      id="SVGRepo_tracerCarrier"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+
+    <g id="SVGRepo_iconCarrier">
+      {" "}
+      <defs>
+        {" "}
+        <radialGradient
+          cx="50.1407407%"
+          cy="50.0030864%"
+          fx="50.1407407%"
+          fy="50.0030864%"
+          r="50.1188272%"
+          id="radialGradient-1"
+        >
+          {" "}
+          <stop stop-color="#797979" offset="0%">
+            {" "}
+          </stop>{" "}
+          <stop stop-color="#4C4C4C" offset="100%">
+            {" "}
+          </stop>{" "}
+        </radialGradient>{" "}
+      </defs>{" "}
+      <g>
+        {" "}
+        <circle fill="#a28657" cx="127.949264" cy="128.603432" r="127.396568">
+          {" "}
+        </circle>{" "}
+        <circle fill="#944c29" cx="114.960894" cy="115.615062" r="114.684546">
+          {" "}
+        </circle>{" "}
+        <circle fill="#af4b4e" cx="130.160051" cy="100.415906" r="99.485389">
+          {" "}
+        </circle>{" "}
+        <circle fill="#a2b045" cx="138.174151" cy="108.430006" r="91.4712882">
+          {" "}
+        </circle>{" "}
+        <circle fill="#69a14f" cx="131.541792" cy="115.062366" r="84.8389289">
+          {" "}
+        </circle>{" "}
+        <circle fill="#a5c6cf" cx="118.000725" cy="101.797647" r="71.2978621">
+          {" "}
+        </circle>{" "}
+        <circle fill="#5892a7" cx="129.607354" cy="89.91467" r="59.6912334">
+          {" "}
+        </circle>{" "}
+        <circle fill="#2695ab" cx="137.068758" cy="97.3760742" r="52.5061775">
+          {" "}
+        </circle>{" "}
+        <circle
+          fill="url(#radialGradient-1)"
+          cx="129.331006"
+          cy="104.837478"
+          r="44.768425"
+        >
+          {" "}
+        </circle>{" "}
+        <circle fill="#231F20" cx="129.331006" cy="104.837478" r="44.768425">
+          {" "}
+        </circle>{" "}
+        <path
+          d="M141.088096,98.9711966 C145.526792,100.962869 151.64783,96.9551361 154.759818,90.0196748 C157.871806,83.0842136 156.796297,75.847342 152.357602,73.8556697 C147.918907,71.8639974 141.797868,75.8717302 138.68588,82.8071914 C135.573892,89.7426526 136.649401,96.9795243 141.088096,98.9711966 L141.088096,98.9711966 Z"
+          fill="#FFFFFF"
+        >
+          {" "}
+        </path>{" "}
+      </g>{" "}
+    </g>
+  </svg>
+);
+export default BrowserStackIcon;

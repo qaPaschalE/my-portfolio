@@ -310,11 +310,11 @@ nav.is-sticky + main {
 .hero-image {
   position: absolute;
   top: auto !important;
-  bottom: -38%;
+  bottom: -25%;
   left: 47%;
   transform: translateX(-50%);
   z-index: 5;
-  max-height: 120%;
+  max-height: 100%;
   width: auto;
   min-width: unset !important;
   filter: brightness(1.3);
@@ -323,5 +323,221 @@ nav.is-sticky + main {
 /* ---- Hero Section Override ---- */
 /* This is the crucial fix that allows the image to be moved freely */
 .hero {
-  overflow: visible !important;
+  overflow: hidden;
+}
+/* ---- Mobile Overlay Menu Styles ---- */
+.mobile-menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--white-color);
+  z-index: 1050; /* Higher than the navbar to appear on top */
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.mobile-menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  width: 100%;
+}
+
+.mobile-menu-header .navbar-brand {
+  color: var(--dark-color);
+}
+
+.mobile-menu-header .close-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: var(--dark-color);
+}
+
+.mobile-menu-links {
+  list-style: none;
+  padding: 2rem 1rem;
+  text-align: center;
+}
+
+.mobile-menu-links li {
+  margin-bottom: 1.5rem;
+}
+
+.mobile-menu-links a {
+  font-size: var(--h5-font-size);
+  color: var(--p-color);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+}
+
+.mobile-menu-links a:hover {
+  color: var(--secondary-color);
+}
+
+.mobile-menu-buttons {
+  margin-top: auto; /* Pushes buttons to the bottom */
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.mobile-menu-buttons .custom-btn {
+  width: 100%;
+  text-align: center;
+  background-color: var(--secondary-color);
+  color: var(--white-color);
+}
+/* ==========================================================================
+   Mobile Responsive Styles
+   ========================================================================== */
+
+/* This targets mobile and tablet screens (anything below 992px) */
+@media (max-width: 991.98px) {
+  /* --- NEW: Makes the navbar permanently sticky on mobile --- */
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: var(--white-color);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  /* --- NEW: Pushes the main content down to prevent it from being hidden --- */
+  main {
+    padding-top: 80px; /* Adjust this value if your navbar height changes */
+  }
+
+  /* Make the hero section shorter */
+  .hero {
+    padding-top: 150px;
+    padding-bottom: 250px;
+  }
+
+  /* Center the "Hello friend!" text */
+  .hero-text {
+    top: 0;
+    text-align: center;
+  }
+
+  /* Make the text bubbles smaller */
+  .hero-title,
+  .hero h2 {
+    font-size: 28px;
+  }
+
+  /* Adjust the container for the images */
+  .hero .col-lg-5.position-relative {
+    min-height: 350px;
+    margin-top: 40px;
+  }
+
+  /* Make the white circle smaller */
+  .hero-image-wrap {
+    width: 280px;
+    height: 280px;
+  }
+
+  /* Make sure your photo fits correctly */
+  .hero-image {
+    max-height: 110%;
+  }
+
+  /* --- Styles for the expanded mobile menu --- */
+  .navbar-collapse.show {
+    background: var(--white-color);
+    border-radius: var(--border-radius-medium);
+    padding: 1rem;
+    margin-top: 1rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  .navbar-nav .nav-link {
+    color: var(--p-color);
+  }
+}
+/* ==========================================================================
+   Navbar Styles
+   ========================================================================== */
+.navbar {
+  position: absolute;
+  z-index: 999;
+  width: 100%;
+  padding: 1rem;
+}
+.navbar-brand {
+  font-size: 28px;
+  font-weight: var(--font-weight-bold);
+  color: var(--dark-color);
+}
+.navbar-toggler {
+  border: 0;
+  padding: 0;
+}
+.navbar-toggler:focus {
+  box-shadow: none;
+}
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+/* ==========================================================================
+   Mobile Overlay Menu
+   ========================================================================== */
+.mobile-menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--white-color);
+  z-index: 1050;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+.mobile-menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+}
+.mobile-menu-header .navbar-brand {
+  color: var(--dark-color);
+}
+.mobile-menu-header .close-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: var(--dark-color);
+}
+.mobile-menu-links {
+  list-style: none;
+  padding: 2rem 1rem;
+  text-align: center;
+}
+.mobile-menu-links li {
+  margin-bottom: 1.5rem;
+}
+.mobile-menu-links a {
+  font-size: var(--h5-font-size);
+  color: var(--p-color);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+}
+.mobile-menu-links a:hover {
+  color: var(--secondary-color);
+}
+.mobile-menu-buttons {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+.mobile-menu-buttons .custom-btn {
+  width: 100%;
+  text-align: center;
 }

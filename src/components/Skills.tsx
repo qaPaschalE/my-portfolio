@@ -20,7 +20,7 @@ const skillsData: Skill[] = [
   {
     title: " UI Test Automation",
     icons: [
-      { id: "cypress", color: "#17202C" },
+      { id: "cypress", color: "#69D3A7" },
       { id: "playwright", color: "#2EAD33" },
       { id: "selenium", color: "#43B02A" },
       { id: "wdio", color: "#EA5906" },
@@ -35,11 +35,11 @@ const skillsData: Skill[] = [
   {
     title: "Mobile Test Automation",
     icons: [
+      { id: "testSigma", color: "#09c0a1" },
       { id: "appium", color: "#662D91" },
       { id: "playwright", color: "#2EAD33" },
       { id: "selenium", color: "#43B02A" },
       { id: "wdio", color: "#EA5906" },
-      { id: "testSigma", color: "#09c0a1" },
     ],
   },
 
@@ -49,15 +49,15 @@ const skillsData: Skill[] = [
       { id: "postman", color: "#FF6C37" },
       { id: "selenium", color: "#43B02A" },
       { id: "playwright", color: "#2EAD33" },
-      { id: "cypress", color: "#17202C" },
+      { id: "cypress", color: "#69D3A7" },
       { id: "testSigma", color: "#09c0a1" },
     ],
   },
   {
     title: "Load Testing Tools",
     icons: [
-      { id: "grafana", color: "#F46800" },
       { id: "k6", color: "#F46800" },
+      { id: "grafana", color: "#F46800" },
       { id: "jmeter", color: "#D22128" },
       { id: "loadninja", color: "#FF6C37" },
     ],
@@ -65,18 +65,20 @@ const skillsData: Skill[] = [
   {
     title: "Frameworks",
     icons: [
-      { id: "mocha", color: "#8D6748" },
       { id: "cucumber", color: "#14b789" },
+      { id: "mocha", color: "#8D6748" },
       { id: "testng", color: "#14b789" },
+      { id: "react", color: "#61DAFB" },
+      { id: "angular", color: "#DD1100" },
     ],
   },
   {
     title: "DevOps & CI/CD Tools",
     icons: [
-      { id: "jenkins", color: "#D24939" },
-      { id: "gitlab", color: "#FC6D27" },
       { id: "github", color: "#181717" },
+      { id: "gitlab", color: "#FC6D27" },
       { id: "bitbucket", color: "#0052CC" },
+      { id: "jenkins", color: "#D24939" },
       { id: "circleci", color: "#343434" },
     ],
   },
@@ -84,10 +86,21 @@ const skillsData: Skill[] = [
   {
     title: "Cloud Platforms",
     icons: [
-      { id: "amazon", color: "#FF9900" },
       { id: "docker", color: "#2496ED" },
+      { id: "amazon", color: "#FF9900" },
       { id: "gcloud", color: "#4285F4" },
       { id: "azure", color: "#4285F4" },
+    ],
+  },
+  {
+    title: "Product Management Tools",
+    icons: [
+      { id: "testmo", color: "#65C179" },
+      // { id: "browserstack", color: "#2496ED" },
+      { id: "jira", color: "#0052CC" },
+      { id: "testrail", color: "#65C179" },
+      // { id: "azure", color: "#4285F4" },
+      // { id: "confluence", color: "#172B4D" },
     ],
   },
 ];
@@ -107,7 +120,7 @@ const Skills: React.FC = () => {
                 className="avatar-image img-fluid"
                 alt="Skills section visual"
               />
-              <h2 className="text-white ms-4 mb-0">Core Skills</h2>
+              <h2 className="text-white ms-4 mb-0">Core Skills And Tools</h2>
             </div>
 
             <div className="row pt-lg-5">

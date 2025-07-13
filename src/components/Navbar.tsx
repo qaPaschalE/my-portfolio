@@ -7,17 +7,18 @@ interface NavbarProps {
 }
 
 const Navbar: React.FC<NavbarProps> = ({ isSticky, activeSection }) => {
-  const [isDropdownOpen, setDropdownOpen] = useState(false);
+  const [isNavCollapsed, setIsNavCollapsed] = useState(true);
+  const handleNavCollapse = () => setIsNavCollapsed(!isNavCollapsed);
 
-  // Define the name of your CV file here
   const cvFileName = "Enyimiri Chetachi Paschal _CV updated.pdf";
 
   return (
     <nav className={`navbar navbar-expand-lg ${isSticky ? "is-sticky" : ""}`}>
       <div className="container">
-        <a href="#section_1" className="navbar-brand mx-auto mx-lg-0">
+        {/* --- BRAND (LEFT SIDE) --- */}
+        <a href="#section_1" className="navbar-brand">
           <AnimatePresence>
-            {isSticky && (
+            {isSticky ? (
               <motion.div
                 layoutId="paschal-avatar"
                 transition={{ type: "spring", stiffness: 300, damping: 30 }}
@@ -28,23 +29,42 @@ const Navbar: React.FC<NavbarProps> = ({ isSticky, activeSection }) => {
                   style={{ height: "50px", width: "50px", borderRadius: "50%" }}
                 />
               </motion.div>
+            ) : (
+              <span className="brand-text">Paschal.E</span>
             )}
           </AnimatePresence>
-          {!isSticky && <span className="navbar-brand-text">Enyimiri</span>}
         </a>
 
-        <div className="d-flex align-items-center d-lg-none">
-          <i className="navbar-icon bi-telephone-plus me-3"></i>
-          <a className="custom-btn btn" href="#section_7">
-            +2347062641241
-          </a>
-        </div>
+        {/* --- DOWNLOAD CV BUTTON (VISIBLE ON MOBILE) --- */}
+        <a
+          href={`${process.env.PUBLIC_URL}/files/${cvFileName}`}
+          download="Enyimiri-Paschal-CV.pdf"
+          className="custom-btn btn d-lg-none"
+        >
+          Download CV
+        </a>
 
-        <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav ms-lg-5">
+        {/* --- HAMBURGER TOGGLER (RIGHT SIDE) --- */}
+        <button
+          className="navbar-toggler"
+          type="button"
+          onClick={handleNavCollapse}
+          aria-expanded={!isNavCollapsed}
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+
+        {/* --- COLLAPSIBLE MENU --- */}
+        <div
+          className={`collapse navbar-collapse ${
+            !isNavCollapsed ? "show" : ""
+          }`}
+          id="navbarNav"
+        >
+          <ul className="navbar-nav mx-auto">
             <li className="nav-item">
               <a
-                className={`nav-link click-scroll ${
+                className={`nav-link ${
                   activeSection === "section_1" ? "active" : ""
                 }`}
                 href="#section_1"
@@ -52,45 +72,19 @@ const Navbar: React.FC<NavbarProps> = ({ isSticky, activeSection }) => {
                 Home
               </a>
             </li>
-            <li
-              className="nav-item dropdown"
-              onMouseEnter={() => setDropdownOpen(true)}
-              onMouseLeave={() => setDropdownOpen(false)}
-            >
+            <li className="nav-item">
               <a
-                className={`nav-link click-scroll ${
+                className={`nav-link ${
                   activeSection === "section_2" ? "active" : ""
                 }`}
                 href="#section_2"
               >
                 About
               </a>
-              <AnimatePresence>
-                {isDropdownOpen && (
-                  <motion.ul
-                    className="dropdown-menu"
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 10 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <li>
-                      <a className="dropdown-item" href="#section_2">
-                        My Story
-                      </a>
-                    </li>
-                    <li>
-                      <a className="dropdown-item" href="#section_2">
-                        Education
-                      </a>
-                    </li>
-                  </motion.ul>
-                )}
-              </AnimatePresence>
             </li>
             <li className="nav-item">
               <a
-                className={`nav-link click-scroll ${
+                className={`nav-link ${
                   activeSection === "section_3" ? "active" : ""
                 }`}
                 href="#section_3"
@@ -100,7 +94,7 @@ const Navbar: React.FC<NavbarProps> = ({ isSticky, activeSection }) => {
             </li>
             <li className="nav-item">
               <a
-                className={`nav-link click-scroll ${
+                className={`nav-link ${
                   activeSection === "section_4" ? "active" : ""
                 }`}
                 href="#section_4"
@@ -110,7 +104,7 @@ const Navbar: React.FC<NavbarProps> = ({ isSticky, activeSection }) => {
             </li>
             <li className="nav-item">
               <a
-                className={`nav-link click-scroll ${
+                className={`nav-link ${
                   activeSection === "section_5" ? "active" : ""
                 }`}
                 href="#section_5"
@@ -120,7 +114,7 @@ const Navbar: React.FC<NavbarProps> = ({ isSticky, activeSection }) => {
             </li>
             <li className="nav-item">
               <a
-                className={`nav-link click-scroll ${
+                className={`nav-link ${
                   activeSection === "section_7" ? "active" : ""
                 }`}
                 href="#section_7"
@@ -130,27 +124,25 @@ const Navbar: React.FC<NavbarProps> = ({ isSticky, activeSection }) => {
             </li>
           </ul>
 
-          <div className="d-lg-flex align-items-center d-none ms-auto">
-            {/* --- DOWNLOAD CV BUTTON --- */}
+          {/* Buttons for Desktop View (Hidden on Mobile) */}
+          <div className="d-none d-lg-flex align-items-center">
             <a
-              // The href points to your file in the public folder
               href={`${process.env.PUBLIC_URL}/files/${cvFileName}`}
-              // The 'download' attribute tells the browser to download the file
-              // You can suggest a filename for the user here
               download="Enyimiri-Paschal-CV.pdf"
               className="custom-btn btn"
             >
               Download CV
             </a>
-
-            <i className="navbar-icon bi-telephone-plus ms-3"></i>
-            <a
-              className="custom-btn btn"
-              href="#section_7"
-              style={{ marginLeft: "10px" }}
-            >
-              +2347062641241
-            </a>
+            <div className="d-flex align-items-center ms-3">
+              <i className="navbar-icon bi-telephone-plus"></i>
+              <a
+                className="custom-btn btn"
+                href="#section_7"
+                style={{ marginLeft: "10px" }}
+              >
+                +2347062641241
+              </a>
+            </div>
           </div>
         </div>
       </div>

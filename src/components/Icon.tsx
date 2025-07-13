@@ -1,7 +1,6 @@
 // src/components/Icon.tsx
 import React, { ComponentType } from "react";
 import {
-  SiCypress,
   SiJavascript,
   SiTypescript,
   SiMocha,
@@ -22,6 +21,10 @@ import {
   SiK6,
   SiApachejmeter,
   SiPython,
+  SiTestrail,
+  SiConfluence,
+  SiAngular,
+  SiReact,
 } from "react-icons/si";
 import { FaNode } from "react-icons/fa";
 
@@ -32,9 +35,12 @@ import PlaywrightIcon from "../icons/PlaywrightIcon";
 import TestSigmaIcon from "../icons/TestSigmaIcon";
 import LoadNinjaIcon from "../icons/loadNinjaIcon";
 import WdioIcon from "../icons/WdioIcon";
+import TestmoIcon from "../icons/TestmoIcon";
+import CypressIcon from "../icons/CypressIcon";
+import JiraIcon from "../icons/JiraIcon";
 // Cast all icons to ComponentType with optional color prop
 type IconComponent = ComponentType<{ color?: string }>;
-const IconCypress = SiCypress as IconComponent;
+const IconCypress = CypressIcon as IconComponent;
 const IconJavascript = SiJavascript as IconComponent;
 const IconTypescript = SiTypescript as IconComponent;
 const IconMocha = SiMocha as IconComponent;
@@ -63,7 +69,12 @@ const IconLoadNinja = LoadNinjaIcon as IconComponent;
 const IconWdio = WdioIcon as IconComponent;
 const IconTestNG = TestNGIcon as IconComponent;
 const IconPython = SiPython as IconComponent;
-
+const IconJira = JiraIcon as IconComponent;
+const IconTestrail = SiTestrail as IconComponent;
+const IconConfluence = SiConfluence as IconComponent;
+const IconReact = SiReact as IconComponent;
+const IconAngular = SiAngular as IconComponent;
+const IconTestmo = TestmoIcon as IconComponent;
 interface IconProps {
   id: string;
   color?: string;
@@ -129,6 +140,18 @@ const Icon: React.FC<IconProps> = ({ id, color }) => {
       return <IconTestNG color={color} />;
     case "nodejs":
       return <IconNodejs color={color} />;
+    case "jira":
+      return <IconJira color={color} />;
+    case "testrail":
+      return <IconTestrail color={color} />;
+    case "confluence":
+      return <IconConfluence color={color} />;
+    case "react":
+      return <IconReact color={color} />;
+    case "angular":
+      return <IconAngular color={color} />;
+    case "testmo":
+      return <IconTestmo color={color} />;
     default:
       return null;
   }

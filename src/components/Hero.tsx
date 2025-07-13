@@ -34,7 +34,7 @@ const Hero: React.FC<HeroProps> = ({ isSticky }) => {
                 </AnimatePresence>
                 <h1 className="hero-title ms-3 mb-0">Hello friend!</h1>
               </div>
-              <h2 className="mb-4">I’m available for freelance work.</h2>
+              <h2 className="mb-4">I’m Enyimiri Paschal Chetachi.</h2>
               <p className="mb-4">
                 <a className="custom-btn btn custom-link" href="#section_2">
                   Let's begin
