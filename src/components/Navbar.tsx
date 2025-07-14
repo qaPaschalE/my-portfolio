@@ -17,9 +17,9 @@ const Navbar: React.FC<NavbarProps> = ({ isSticky, activeSection }) => {
   return (
     <nav className={`navbar navbar-expand-lg ${isSticky ? "is-sticky" : ""}`}>
       <div className="container">
-        <a href="#hero" className="navbar-brand mx-auto mx-lg-0">
+        <a href="#hero" className="navbar-brand">
           <AnimatePresence>
-            {isSticky && (
+            {isSticky ? (
               <motion.div
                 layoutId="paschal-avatar"
                 transition={{ type: "spring", stiffness: 300, damping: 30 }}
@@ -30,11 +30,33 @@ const Navbar: React.FC<NavbarProps> = ({ isSticky, activeSection }) => {
                   style={{ height: "50px", width: "50px", borderRadius: "50%" }}
                 />
               </motion.div>
+            ) : (
+              <span className="brand-text">QAPaschalE</span>
             )}
           </AnimatePresence>
-          {!isSticky && <span className="navbar-brand-text">Paschal.E</span>}
         </a>
 
+        {/* --- NEW: BUTTONS FOR MOBILE VIEW --- */}
+        {/* This div is only visible on mobile (d-lg-none) */}
+        <div className="d-flex d-lg-none ms-auto me-2">
+          <a
+            href={`${process.env.PUBLIC_URL}/files/${cvFileName}`}
+            download="Enyimiri-Paschal-CV.pdf"
+            className="custom-btn btn"
+            style={{ fontSize: "12px", padding: "6px 12px" }}
+          >
+            CV
+          </a>
+          <a
+            className="custom-btn btn"
+            href="#contact"
+            style={{ fontSize: "12px", padding: "6px 12px", marginLeft: "8px" }}
+          >
+            Contact
+          </a>
+        </div>
+
+        {/* --- HAMBURGER TOGGLER --- */}
         <button
           className="navbar-toggler"
           type="button"
@@ -45,13 +67,13 @@ const Navbar: React.FC<NavbarProps> = ({ isSticky, activeSection }) => {
           <span className="navbar-toggler-icon"></span>
         </button>
 
+        {/* --- COLLAPSIBLE MENU --- */}
         <div
           className={`collapse navbar-collapse ${
             !isNavCollapsed ? "show" : ""
           }`}
           id="navbarNav"
         >
-          {/* THE FIX IS HERE: All hrefs and activeSection checks are updated */}
           <ul className="navbar-nav mx-auto">
             <li className="nav-item">
               <a
@@ -140,7 +162,8 @@ const Navbar: React.FC<NavbarProps> = ({ isSticky, activeSection }) => {
             </li>
           </ul>
 
-          <div className="d-flex flex-column flex-lg-row align-items-center mt-3 mt-lg-0">
+          {/* Buttons for Desktop View (Hidden on Mobile) */}
+          <div className="d-none d-lg-flex align-items-center">
             <a
               href={`${process.env.PUBLIC_URL}/files/${cvFileName}`}
               download="Enyimiri-Paschal-CV.pdf"
@@ -148,10 +171,7 @@ const Navbar: React.FC<NavbarProps> = ({ isSticky, activeSection }) => {
             >
               Download CV
             </a>
-            <a className="custom-btn btn d-lg-none mt-2" href="#contact">
-              Contact Me
-            </a>
-            <div className="d-none d-lg-flex align-items-center ms-lg-3">
+            <div className="d-flex align-items-center ms-3">
               <i className="navbar-icon bi-telephone-plus"></i>
               <a
                 className="custom-btn btn"
