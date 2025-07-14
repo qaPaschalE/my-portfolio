@@ -311,7 +311,7 @@ nav.is-sticky + main {
   position: absolute;
   top: auto !important;
   bottom: -25%;
-  left: 47%;
+  left: 53%;
   transform: translateX(-50%);
   z-index: 5;
   max-height: 100%;
@@ -470,9 +470,9 @@ nav.is-sticky + main {
   padding: 1rem;
 }
 .navbar-brand {
-  font-size: 22px;
+  font-size: 18px;
   font-weight: var(--font-weight-bold);
-  color: var(--dark-color);
+  color: var(--secondary-color);
 }
 .navbar-toggler {
   border: 0;

@@ -341,7 +341,7 @@ strong {
 
 .navbar .container {
   border-radius: var(--border-radius-small);
-  padding: 10px 25px;
+  padding: 5px 9px;
 }
 
 .navbar-brand {
@@ -1123,8 +1123,8 @@ strong {
 
 @media screen and (max-width: 575px) {
   .navbar .container {
-    margin-right: 12px;
-    margin-left: 12px;
+    margin-right: 6px;
+    margin-left: -5px;
   }
 }
 
@@ -1151,8 +1151,8 @@ strong {
 
   .custom-btn,
   .navbar .custom-btn {
-    font-size: 13px;
-    padding: 6px 12px;
+    font-size: 11px;
+    padding: 6px 11px;
   }
 
   .navbar-icon {
