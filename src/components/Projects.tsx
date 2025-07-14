@@ -111,7 +111,7 @@ const Projects: React.FC = () => {
   ];
 
   return (
-    <section className="projects section-padding" id="section_5">
+    <section className="projects section-padding" id="projects">
       <div className="container">
         <div className="row">
           <div className="col-lg-8 col-md-8 col-12 ms-auto">

@@ -2,7 +2,7 @@ import React from "react";
 
 const About: React.FC = () => {
   return (
-    <section className="about section-padding" id="section_2">
+    <section className="about section-padding" id="about">
       <div className="container">
         <div className="row">
           {/* --- RIGHT COLUMN (My Story): Now appears FIRST in code --- */}

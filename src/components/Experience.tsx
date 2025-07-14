@@ -89,7 +89,7 @@ const Experience: React.FC = () => {
   ];
 
   return (
-    <section className="featured section-padding" id="section_4">
+    <section className="featured section-padding" id="experience">
       <div className="container">
         <div className="row">
           <div className="col-lg-10 col-12 mx-auto">

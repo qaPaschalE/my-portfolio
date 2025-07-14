@@ -9,7 +9,7 @@ const Hero: React.FC<HeroProps> = ({ isSticky }) => {
   return (
     <section
       className="hero d-flex justify-content-center align-items-center"
-      id="section_1"
+      id="hero"
     >
       <div className="container">
         <div className="row">
@@ -36,7 +36,7 @@ const Hero: React.FC<HeroProps> = ({ isSticky }) => {
               </div>
               <h2 className="mb-4">I’m Enyimiri Paschal Chetachi.</h2>
               <p className="mb-4">
-                <a className="custom-btn btn custom-link" href="#section_2">
+                <a className="custom-btn btn custom-link" href="about">
                   Let's begin
                 </a>
               </p>
