@@ -140,3 +140,4 @@ vite.config.ts.timestamp-*
 public/.DS_Store
 public/images/.DS_Store
 src/.DS_Store
+build/.DS_Store
