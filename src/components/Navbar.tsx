@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { toast } from "react-toastify"; // 1. Import the toast function
 
 interface NavbarProps {
   isSticky: boolean;
@@ -13,6 +14,11 @@ const Navbar: React.FC<NavbarProps> = ({ isSticky, activeSection }) => {
   const handleNavCollapse = () => setIsNavCollapsed(!isNavCollapsed);
 
   const cvFileName = "Enyimiri Chetachi Paschal _CV updated.pdf";
+
+  // 2. New function to show the download toast
+  const handleDownloadClick = () => {
+    toast.info("CV download started!");
+  };
 
   return (
     <nav className={`navbar navbar-expand-lg ${isSticky ? "is-sticky" : ""}`}>
@@ -36,14 +42,14 @@ const Navbar: React.FC<NavbarProps> = ({ isSticky, activeSection }) => {
           </AnimatePresence>
         </a>
 
-        {/* --- NEW: BUTTONS FOR MOBILE VIEW --- */}
-        {/* This div is only visible on mobile (d-lg-none) */}
+        {/* --- BUTTONS FOR MOBILE VIEW --- */}
         <div className="d-flex d-lg-none ms-auto me-2">
           <a
             href={`${process.env.PUBLIC_URL}/files/${cvFileName}`}
             download="Enyimiri-Paschal-CV.pdf"
             className="custom-btn btn"
             style={{ fontSize: "12px", padding: "6px 12px" }}
+            onClick={handleDownloadClick} // 3. Add onClick handler here
           >
             CV
           </a>
@@ -168,6 +174,7 @@ const Navbar: React.FC<NavbarProps> = ({ isSticky, activeSection }) => {
               href={`${process.env.PUBLIC_URL}/files/${cvFileName}`}
               download="Enyimiri-Paschal-CV.pdf"
               className="custom-btn btn"
+              onClick={handleDownloadClick} // 3. Add onClick handler here too
             >
               Download CV
             </a>
