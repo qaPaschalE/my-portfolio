@@ -36,7 +36,7 @@ const Hero: React.FC<HeroProps> = ({ isSticky }) => {
               </div>
               <h2 className="mb-4">I’m Enyimiri Paschal Chetachi.</h2>
               <p className="mb-4">
-                <a className="custom-btn btn custom-link" href="about">
+                <a className="custom-btn btn custom-link" href="#about">
                   Let's begin
                 </a>
               </p>
