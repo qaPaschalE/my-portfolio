@@ -42,17 +42,6 @@ const ExperienceItem: React.FC<ExperienceProps> = ({
 const Experience: React.FC = () => {
   const experiences: ExperienceProps[] = [
     {
-      title: "Senior Quality Assurance Engineer",
-      company: "Indicina",
-      duration: "April 2022 - Present",
-      description: [
-        "Create and Organise Workshops and Seminars on new processes and latest updates in the QA.",
-        "Lead and mentor a team of QA Engineers.",
-        "Creating and maintaining automated tests.",
-      ],
-      tools: "Cypress, Cucumber, Typescript, Postman, k6-cucumber-steps",
-    },
-    {
       title: "Software Quality Assurance Analyst",
       company: "SeamlessHR (contract)",
       duration: "Feb 2025 - Present",
@@ -63,6 +52,18 @@ const Experience: React.FC = () => {
       ],
       tools: "Cypress, Cucumber, Postman, k6-cucumber-steps, Typescript",
     },
+    {
+      title: "Senior Quality Assurance Engineer",
+      company: "Indicina",
+      duration: "April 2022 - Jan 2025",
+      description: [
+        "Create and Organise Workshops and Seminars on new processes and latest updates in the QA.",
+        "Lead and mentor a team of QA Engineers.",
+        "Creating and maintaining automated tests.",
+      ],
+      tools: "Cypress, Cucumber, Typescript, Postman, k6-cucumber-steps",
+    },
+
     {
       title: "QA Tech Lead",
       company: "Deel (contract)",

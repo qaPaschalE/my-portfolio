@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import Quotes from "./components/Quotes";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import About from "./components/About";
@@ -63,6 +63,7 @@ const App: React.FC = () => {
       <Navbar isSticky={isSticky} activeSection={activeSection} />
       <main>
         <Hero isSticky={isSticky} />
+        {/* <Quotes /> */}
         <About />
         <Skills />
         <Experience />

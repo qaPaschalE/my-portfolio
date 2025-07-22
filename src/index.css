@@ -302,7 +302,6 @@ nav.is-sticky + main {
   transform: translateX(-50%);
   width: 400px;
   height: 400px;
-  /* THE FIX: We use a higher z-index to pull it forward */
   z-index: 5;
 }
 
@@ -311,7 +310,7 @@ nav.is-sticky + main {
   position: absolute;
   top: auto !important;
   bottom: -25%;
-  left: 53%;
+  left: 50%;
   transform: translateX(-50%);
   z-index: 5;
   max-height: 100%;
@@ -418,7 +417,9 @@ nav.is-sticky + main {
     padding-top: 150px;
     padding-bottom: 250px;
   }
-
+  .hero-image {
+    bottom: -46%; /* New position for mobile */
+  }
   /* Center the "Hello friend!" text */
   .hero-text {
     top: 0;
@@ -439,13 +440,21 @@ nav.is-sticky + main {
 
   /* Make the white circle smaller */
   .hero-image-wrap {
-    width: 280px;
-    height: 280px;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 400px;
+    height: 400px;
+    z-index: 3;
+    border-radius: 50%;
+    background: var(--white-color); /* Default to white circle */
+    transition: all 0.5s ease-in-out;
   }
 
   /* Make sure your photo fits correctly */
   .hero-image {
-    max-height: 110%;
+    max-height: 125%;
   }
 
   /* --- Styles for the expanded mobile menu --- */
@@ -541,3 +550,257 @@ nav.is-sticky + main {
   width: 100%;
   text-align: center;
 }
+/* ==========================================================================
+   Quotes / Testimonials Slider
+   ========================================================================== */
+.quotes-section {
+  background-color: var(--section-bg-color);
+}
+
+.quote-card {
+  padding: 2rem 4rem;
+  text-align: center;
+}
+
+.quote-text {
+  font-size: 22px;
+  font-style: italic;
+  color: var(--p-color);
+  line-height: 1.6;
+}
+
+.quote-author {
+  font-size: 18px;
+  font-weight: var(--font-weight-bold);
+  color: var(--secondary-color);
+  margin-top: 1.5rem;
+}
+
+/* Customizing the Swiper Navigation Arrows */
+.swiper-button-next,
+.swiper-button-prev {
+  color: var(--primary-color) !important;
+  transition: all 0.3s;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  color: var(--secondary-color) !important;
+  transform: scale(1.2);
+}
+.theme-toggle-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: var(--p-color);
+  transition: all 0.3s;
+}
+.theme-toggle-btn:hover {
+  color: var(--secondary-color);
+  transform: scale(1.2);
+}
+.is-sticky .theme-toggle-btn {
+  color: var(--secondary-color);
+}
+/* ==========================================================================
+   THEME VARIABLES
+   ========================================================================== */
+:root {
+  --white-color: #ffffff;
+  --primary-color: #535da1;
+  --secondary-color: #14b789;
+  --p-color: #717275;
+
+  /* Light Mode Colors */
+  --body-bg: #ffffff;
+  --section-bg-color: #f9f9f9;
+  --card-bg: #ffffff;
+  --heading-color: #000000;
+  --text-color: #717275;
+  --border-color: #e9eaeb;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+html.dark {
+  /* Dark Mode Colors */
+  --body-bg: #1a1a1a;
+  --section-bg-color: #222222;
+  --card-bg: #2c2c2c;
+  --heading-color: #ffffff;
+  --text-color: #adb5bd;
+  --border-color: #3a3a3a;
+  --shadow-color: rgba(0, 0, 0, 0.2);
+}
+
+/* ==========================================================================
+   Base Styles (Now using variables)
+   ========================================================================== */
+body {
+  background: var(--body-bg);
+  color: var(--text-color);
+  font-family: "DM Sans", sans-serif;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--heading-color);
+}
+p {
+  color: var(--text-color);
+}
+.section-padding {
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+.services,
+.featured,
+.contact {
+  background-color: var(--section-bg-color);
+}
+
+/* ==========================================================================
+   Dark Mode Component Overrides
+   ========================================================================== */
+
+/* --- Hero Section Dark Mode --- */
+html.dark .hero {
+  background: var(--card-bg);
+  transition: background-color 0.5s ease-in-out;
+}
+html.dark .hero-title,
+html.dark .hero h2 {
+  background: var(--card-bg);
+  box-shadow: 0 1rem 3rem var(--shadow-color);
+}
+html.dark .hero h2 {
+  color: var(--secondary-color); /* Keep the green color */
+}
+html.dark .custom-link {
+  background-color: var(--primary-color);
+  color: var(--white-color);
+}
+
+/* ---- About & Education Section Dark Mode --- */
+html.dark .profile-thumb {
+  /* We've removed '.about-thumb .section-title-wrap' from this rule */
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+}
+
+/* We ensure the title wrap ALWAYS has its green background */
+.section-title-wrap {
+  background: var(--secondary-color);
+}
+html.dark .info-row {
+  border-bottom-color: var(--border-color);
+}
+html.dark .profile-body {
+  padding: 15px 30px;
+}
+
+/* --- Skills & Projects Dark Mode --- */
+html.dark .services-thumb,
+html.dark .projects-thumb {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  box-shadow: none;
+}
+
+/* --- Contact Form Dark Mode --- */
+html.dark .contact-info {
+  background: var(--card-bg);
+  border-color: var(--border-color);
+}
+html.dark .custom-form .form-control {
+  background: var(--body-bg);
+  border-color: var(--border-color);
+  color: var(--text-color);
+}
+html.dark .custom-form .form-control:focus {
+  background: var(--body-bg);
+  border-color: var(--secondary-color);
+  color: var(--heading-color);
+}
+html.dark .form-floating > label {
+  color: var(--p-color);
+}
+
+/* --- Navbar Dark Mode --- */
+html.dark .navbar:not(.is-sticky) .brand-text,
+html.dark .navbar:not(.is-sticky) .navbar-toggler-icon {
+  /* Assuming you want these dark on the light theme, but light on dark theme */
+}
+html.dark .is-sticky .container {
+  background: var(--card-bg) !important;
+  box-shadow: 0 4px 10px var(--shadow-color) !important;
+}
+html.dark .dropdown-menu {
+  background-color: var(--card-bg);
+  box-shadow: 0 4px 10px var(--shadow-color);
+}
+html.dark .dropdown-item {
+  color: var(--text-color);
+}
+html.dark .dropdown-item:hover {
+  background-color: var(--section-bg-color);
+  color: var(--secondary-color);
+}
+html.dark .theme-toggle-btn {
+  border-color: var(--border-color);
+  color: var(--text-color);
+}
+
+/* --- Footer Dark Mode --- */
+html.dark .site-footer {
+  border-top-color: var(--border-color);
+}
+html.dark .social-icon-link {
+  background-color: var(--card-bg);
+  border-color: var(--border-color);
+  color: var(--text-color);
+}
+/* ---- Dark Mode Hero Shape Override ---- */
+
+/* This rule applies only when dark mode is active */
+html.dark .hero-image-wrap {
+  /* --- POSITIONING RULES (Restored) --- */
+  position: absolute;
+  bottom: 20px; /* Adjust to move the moon up or down */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 400px;
+  height: 400px;
+
+  /* --- STYLING RULES for the crescent moon --- */
+  background: rgb(220, 220, 220); /* Adjust this color for brightness */
+  border-radius: 50%;
+  overflow: hidden;
+  transition: all 0.5s ease-in-out;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* This pseudo-element creates the dark circle to form the crescent */
+html.dark .hero-image-wrap::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--card-bg);
+  border-radius: 50%;
+  transform: translateX(-20%); /* Adjust this value for crescent thickness */
+}
+
+/* We also restore the positioning for your photo */
+html.dark .hero-image {
+  left: 50%; /* Adjust this value to position your photo */
+}
+/* ==========================================================================
+   (Your other custom styles remain below)
+   ========================================================================== */

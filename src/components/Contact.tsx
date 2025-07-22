@@ -1,12 +1,6 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
-
-const CustomToastMessage = () => (
-  <div>
-    <strong>Success!</strong>
-    <p style={{ margin: 0, fontSize: "14px" }}>Your message has been sent.</p>
-  </div>
-);
+import { showSuccessToast } from "../utils/toast.utils";
 
 const Contact: React.FC = () => {
   const [name, setName] = useState("");
@@ -33,12 +27,9 @@ const Contact: React.FC = () => {
       });
 
       if (response.ok) {
-        toast.success(<CustomToastMessage />, {
-          icon: (
-            <i className="bi bi-envelope-check" style={{ color: "white" }} />
-          ),
-          onClose: () => window.location.reload(),
-        });
+        showSuccessToast("Success!", "Your message has been sent.", () =>
+          window.location.reload()
+        );
 
         setName("");
         setEmail("");
@@ -71,11 +62,10 @@ const Contact: React.FC = () => {
 
           <div className="clearfix"></div>
 
-          {/* --- RESTORED "STAY CONNECTED" COLUMN --- */}
           <div className="col-lg-3 col-md-6 col-12 pe-lg-0">
             <div className="contact-info contact-info-border-start d-flex flex-column">
               <strong className="site-footer-title d-block mb-3">
-                Services
+                Stay Connected
               </strong>
               <ul className="social-icon">
                 <li className="social-icon-item">
@@ -96,14 +86,7 @@ const Contact: React.FC = () => {
                     className="social-icon-link bi-twitter"
                   ></a>
                 </li>
-                {/* <li className="social-icon-item">
-                  <a href="#" className="social-icon-link bi-instagram"></a>
-                </li>
-                <li className="social-icon-item">
-                  <a href="#" className="social-icon-link bi-youtube"></a>
-                </li> */}
               </ul>
-
               <strong className="site-footer-title d-block mt-4 mb-3">
                 Start a Project
               </strong>
@@ -111,7 +94,6 @@ const Contact: React.FC = () => {
             </div>
           </div>
 
-          {/* --- RESTORED "ABOUT" & CONTACT INFO COLUMN --- */}
           <div className="col-lg-3 col-md-6 col-12 ps-lg-0">
             <div className="contact-info d-flex flex-column">
               <strong className="site-footer-title d-block mb-3">About</strong>
@@ -119,7 +101,6 @@ const Contact: React.FC = () => {
                 I am a professional Software Quality Assurance Engineer. Feel
                 free to get in touch with me.
               </p>
-
               <strong className="site-footer-title d-block mt-4 mb-3">
                 Email
               </strong>
@@ -128,7 +109,6 @@ const Contact: React.FC = () => {
                   paschal.enyimiri@gmail.com
                 </a>
               </p>
-
               <strong className="site-footer-title d-block mt-4 mb-3">
                 Call
               </strong>
@@ -138,7 +118,6 @@ const Contact: React.FC = () => {
             </div>
           </div>
 
-          {/* --- FUNCTIONAL CONTACT FORM --- */}
           <div className="col-lg-6 col-12 mt-5 mt-lg-0">
             <form
               action="https://formspree.io/f/mjkrdopo"
@@ -191,7 +170,8 @@ const Contact: React.FC = () => {
                   </div>
                 </div>
                 <div className="col-lg-3 col-12 ms-auto">
-                  <button type="submit" className="form-control">
+                  {/* THE FIX IS HERE: We changed the className */}
+                  <button type="submit" className="custom-btn btn">
                     Send
                   </button>
                 </div>
