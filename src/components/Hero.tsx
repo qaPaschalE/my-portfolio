@@ -32,9 +32,9 @@ const Hero: React.FC<HeroProps> = ({ isSticky }) => {
                     </motion.div>
                   )}
                 </AnimatePresence>
-                <h1 className="hero-title ms-3 mb-0">I am</h1>
+                <h1 className="hero-title ms-3 mb-0">Hello friend!</h1>
               </div>
-              <h2 className="mb-4">Enyimiri Paschal Chetachi.</h2>
+              <h2 className="mb-4">I’m Enyimiri Paschal Chetachi.</h2>
               <p className="mb-4">
                 <a className="custom-btn btn custom-link" href="#about">
                   Let's begin

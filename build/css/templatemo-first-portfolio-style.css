@@ -882,7 +882,7 @@ strong {
 
 .site-footer-title {
   font-size: var(--menu-font-size);
-  color: var(--dark-color);
+  color: var(--secondary-color);
   text-transform: uppercase;
 }
 

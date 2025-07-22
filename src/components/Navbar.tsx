@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "react-toastify";
-import ThemeToggle from "./ThemeToggle"; // 1. Import the toggle component
+import ThemeToggle from "./ThemeToggle"; // Your theme toggle component
 
 interface NavbarProps {
   isSticky: boolean;
@@ -42,7 +42,6 @@ const Navbar: React.FC<NavbarProps> = ({ isSticky, activeSection }) => {
 
         {/* --- BUTTONS FOR MOBILE VIEW --- */}
         <div className="d-flex d-lg-none ms-auto me-2 align-items-center">
-          {/* 2. Add the ThemeToggle to the mobile view */}
           <ThemeToggle />
           <a
             href={`${process.env.PUBLIC_URL}/files/${cvFileName}`}
@@ -71,16 +70,102 @@ const Navbar: React.FC<NavbarProps> = ({ isSticky, activeSection }) => {
           }`}
           id="navbarNav"
         >
-          <ul className="navbar-nav mx-auto">{/* ... your nav links ... */}</ul>
+          {/* THE FIX IS HERE: The navigation links have been restored */}
+          <ul className="navbar-nav mx-auto">
+            <li className="nav-item">
+              <a
+                className={`nav-link ${
+                  activeSection === "hero" ? "active" : ""
+                }`}
+                href="#hero"
+              >
+                Home
+              </a>
+            </li>
+            <li
+              className="nav-item dropdown"
+              onMouseEnter={() => setDropdownOpen(true)}
+              onMouseLeave={() => setDropdownOpen(false)}
+            >
+              <a
+                className={`nav-link ${
+                  activeSection === "about" ? "active" : ""
+                }`}
+                href="#about"
+              >
+                About
+              </a>
+              <AnimatePresence>
+                {isDropdownOpen && (
+                  <motion.ul
+                    className="dropdown-menu"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                  >
+                    <li>
+                      <a className="dropdown-item" href="#about">
+                        My Story
+                      </a>
+                    </li>
+                    <li>
+                      <a className="dropdown-item" href="#about">
+                        Education
+                      </a>
+                    </li>
+                  </motion.ul>
+                )}
+              </AnimatePresence>
+            </li>
+            <li className="nav-item">
+              <a
+                className={`nav-link ${
+                  activeSection === "skills" ? "active" : ""
+                }`}
+                href="#skills"
+              >
+                Skills
+              </a>
+            </li>
+            <li className="nav-item">
+              <a
+                className={`nav-link ${
+                  activeSection === "experience" ? "active" : ""
+                }`}
+                href="#experience"
+              >
+                Experience
+              </a>
+            </li>
+            <li className="nav-item">
+              <a
+                className={`nav-link ${
+                  activeSection === "projects" ? "active" : ""
+                }`}
+                href="#projects"
+              >
+                Projects
+              </a>
+            </li>
+            <li className="nav-item">
+              <a
+                className={`nav-link ${
+                  activeSection === "contact" ? "active" : ""
+                }`}
+                href="#contact"
+              >
+                Contact
+              </a>
+            </li>
+          </ul>
 
           {/* Buttons for Desktop View (Hidden on Mobile) */}
           <div className="d-none d-lg-flex align-items-center">
-            {/* 3. Add the ThemeToggle to the desktop view */}
             <ThemeToggle />
             <a
               href={`${process.env.PUBLIC_URL}/files/${cvFileName}`}
               download="Enyimiri-Paschal-CV.pdf"
-              className="custom-btn btn ms-3" // Added margin here
+              className="custom-btn btn ms-3"
               onClick={handleDownloadClick}
             >
               Download CV
