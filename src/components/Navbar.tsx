@@ -103,6 +103,11 @@ const Navbar: React.FC<NavbarProps> = ({ isSticky, activeSection }) => {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 10 }}
                   >
+                    {/* <li>
+                      <a className="dropdown-item" href="#quotes">
+                        Recommendations
+                      </a>
+                    </li> */}
                     <li>
                       <a className="dropdown-item" href="#about">
                         My Story

@@ -801,6 +801,118 @@ html.dark .hero-image-wrap::before {
 html.dark .hero-image {
   left: 50%; /* Adjust this value to position your photo */
 }
+
 /* ==========================================================================
-   (Your other custom styles remain below)
+   n8n AI Chat Widget
    ========================================================================== */
+.chat-widget-container {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 1000;
+}
+.chat-toggle-button {
+  background: var(--secondary-color);
+  color: var(--white-color);
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+.chat-window {
+  position: absolute;
+  bottom: 80px;
+  right: 0;
+  width: 370px;
+  height: 500px;
+  background: var(--card-bg);
+  border-radius: var(--border-radius-medium);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+}
+.chat-header {
+  padding: 1rem;
+  border-bottom: 1px solid var(--border-color);
+  /* ... */
+}
+.chat-body {
+  flex-grow: 1;
+  padding: 1rem;
+  overflow-y: auto;
+}
+.chat-message {
+  margin-bottom: 1rem;
+  display: flex;
+}
+.chat-message p {
+  padding: 0.75rem 1rem;
+  border-radius: 18px;
+  max-width: 80%;
+  line-height: 1.5;
+}
+.chat-message.user {
+  justify-content: flex-end;
+}
+.chat-message.user p {
+  background: var(--primary-color);
+  color: var(--white-color);
+  border-bottom-right-radius: 4px;
+}
+.chat-message.ai p {
+  background: var(--section-bg-color);
+  border-bottom-left-radius: 4px;
+}
+.chat-footer form {
+  display: flex;
+  padding: 1rem;
+  border-top: 1px solid var(--border-color);
+}
+.chat-footer input {
+  flex-grow: 1;
+  border: none;
+  background: var(--section-bg-color);
+  padding: 0.75rem;
+  border-radius: 18px;
+  color: var(--text-color);
+}
+.chat-footer button {
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: var(--secondary-color);
+  cursor: pointer;
+  margin-left: 0.5rem;
+}
+.chat-message.ai.thinking span {
+  height: 8px;
+  width: 8px;
+  border-radius: 50%;
+  background-color: var(--p-color);
+  display: inline-block;
+  margin: 0 2px;
+  animation: bounce 1.4s infinite ease-in-out both;
+}
+.chat-message.ai.thinking span:nth-of-type(1) {
+  animation-delay: -0.32s;
+}
+.chat-message.ai.thinking span:nth-of-type(2) {
+  animation-delay: -0.16s;
+}
+@keyframes bounce {
+  0%,
+  80%,
+  100% {
+    transform: scale(0);
+  }
+  40% {
+    transform: scale(1);
+  }
+}

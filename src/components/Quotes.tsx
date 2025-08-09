@@ -27,7 +27,7 @@ const quotesData = [
 const Quotes: React.FC = () => {
   return (
     // We will use the 'about' section's ID so the navbar highlights correctly
-    <section className="quotes-section section-padding" id="about">
+    <section className="quotes-section section-padding" id="quotes">
       <div className="container">
         <div className="row">
           <div className="col-12 text-center">

@@ -11,6 +11,7 @@ import Experience from "./components/Experience";
 import Projects from "./components/Projects";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
+import ChatWidget from "./components/ChatWidget";
 
 const App: React.FC = () => {
   const [isSticky, setSticky] = useState(false);
@@ -71,6 +72,7 @@ const App: React.FC = () => {
         <Contact />
       </main>
       <Footer />
+      <ChatWidget />
     </div>
   );
 };
