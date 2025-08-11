@@ -828,9 +828,9 @@ html.dark .hero-image {
 .chat-window {
   position: absolute;
   bottom: 80px;
-  right: 0;
-  width: 370px;
-  height: 500px;
+  right: -2rem;
+  width: 345px;
+  height: 550px;
   background: var(--card-bg);
   border-radius: var(--border-radius-medium);
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
