@@ -1,5 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { toast } from "react-toastify";
+import { IoMdChatboxes, IoMdClose } from "react-icons/io";
 
 interface Message {
   sender: "user" | "ai";
@@ -8,11 +10,11 @@ interface Message {
 
 const ChatWidget: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [showPreview, setShowPreview] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [userInput, setUserInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  // 1. New states to manage the initial info capture
   const [visitorName, setVisitorName] = useState("");
   const [visitorEmail, setVisitorEmail] = useState("");
   const [hasProvidedInfo, setHasProvidedInfo] = useState(false);
@@ -20,8 +22,17 @@ const ChatWidget: React.FC = () => {
   const chatBodyRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const n8nWebhookUrl =
-    "https://qapaschale.app.n8n.cloud/webhook/f5e6fd0a-3cf8-49c4-bac2-9353f13c6a98";
+  const n8nWebhookUrl = "https://chepsyop.app.n8n.cloud/webhook/chat"; // Make sure to use your public URL
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (!isOpen && !showPreview) {
+        setShowPreview(true);
+      }
+    }, 12000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     if (chatBodyRef.current) {
@@ -32,16 +43,26 @@ const ChatWidget: React.FC = () => {
     }
   }, [messages, isOpen, isLoading]);
 
-  // 2. New handler for the initial welcome form
+  const handleOpenFullChat = () => {
+    setShowPreview(false);
+    setIsOpen(true);
+  };
+
   const handleInfoSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!visitorName.trim() || !visitorEmail.trim()) return;
 
-    setHasProvidedInfo(true); // Switch to the chat view
+    const nameValidationRegex = /^[a-zA-Z\s]*$/;
+    if (!nameValidationRegex.test(visitorName)) {
+      toast.error("Name can only contain letters and spaces.");
+      return;
+    }
+
+    setHasProvidedInfo(true);
     setMessages([
       {
         sender: "ai",
-        text: `Hi ${visitorName}! I'm Paschal's AI assistant. How can I help you today?`,
+        text: `Hi ${visitorName}! Thanks for introducing yourself. How can I help you today?`,
       },
     ]);
   };
@@ -61,7 +82,7 @@ const ChatWidget: React.FC = () => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          name: visitorName, // 3. Send the visitor's name and email with every message
+          name: visitorName,
           email: visitorEmail,
           message: userInput,
           history: newMessages,
@@ -99,15 +120,21 @@ const ChatWidget: React.FC = () => {
             exit={{ opacity: 0, y: 20 }}
           >
             <div className="chat-header">
+              <div className="chat-head-image">
+                <img
+                  src="https://qapaschale.github.io/my-portfolio/images/Paschal%20Headshot.png"
+                  alt="Enyimiri Paschal Chetachi"
+                />
+                <span className="online-dot"></span>
+              </div>
               <h4>QAPaschalE AI</h4>
               <button onClick={() => setIsOpen(false)}>&times;</button>
             </div>
 
-            {/* 4. Conditionally render the info form or the chat body */}
             {!hasProvidedInfo ? (
               <div className="chat-body">
                 <form onSubmit={handleInfoSubmit} className="info-form">
-                  <p>Welcome! Please introduce yourself to start chatting.</p>
+                  <p>Welcome! Please introduce yourself to continue.</p>
                   <input
                     type="text"
                     placeholder="Your Name"
@@ -126,10 +153,20 @@ const ChatWidget: React.FC = () => {
                 </form>
               </div>
             ) : (
+              // --- THE FIX IS HERE: The chat body and footer have been restored ---
               <>
                 <div className="chat-body" ref={chatBodyRef}>
                   {messages.map((msg, index) => (
                     <div key={index} className={`chat-message ${msg.sender}`}>
+                      {msg.sender === "ai" && (
+                        <div className="chat-avatar">
+                          <img
+                            src="https://qapaschale.github.io/my-portfolio/images/Paschal%20Headshot.png"
+                            alt="Paschal"
+                          />
+                          <span className="online-dot"></span>
+                        </div>
+                      )}
                       <p>{msg.text}</p>
                     </div>
                   ))}
@@ -160,9 +197,37 @@ const ChatWidget: React.FC = () => {
             )}
           </motion.div>
         )}
+
+        {showPreview && (
+          <motion.div
+            className="chat-preview-bubble"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+            onClick={handleOpenFullChat}
+          >
+            <div className="chat-avatar">
+              <img
+                src="https://qapaschale.github.io/my-portfolio/images/Paschal%20Headshot.png"
+                alt="Paschal"
+              />
+              <span className="online-dot"></span>
+            </div>
+            <div className="preview-text">
+              Hello there! Welcome to my portfolio.
+            </div>
+          </motion.div>
+        )}
       </AnimatePresence>
-      <button className="chat-toggle-button" onClick={() => setIsOpen(!isOpen)}>
-        <i className={`bi ${isOpen ? "bi-x-lg" : "bi-chat-dots-fill"}`}></i>
+
+      <button
+        className="chat-toggle-button"
+        onClick={() => {
+          setShowPreview(false);
+          setIsOpen(!isOpen);
+        }}
+      >
+        <i className={`bi ${isOpen ? "bi-x-lg" : "bi-messenger"}`}></i>
       </button>
     </div>
   );

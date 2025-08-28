@@ -812,6 +812,9 @@ html.dark .hero-image {
   z-index: 1000;
 }
 .chat-toggle-button {
+  position: absolute;
+  bottom: 0;
+  right: 0;
   background: var(--secondary-color);
   color: var(--white-color);
   border: none;
@@ -824,13 +827,14 @@ html.dark .hero-image {
   align-items: center;
   cursor: pointer;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  z-index: 1002;
 }
 .chat-window {
   position: absolute;
   bottom: 80px;
-  right: -2rem;
-  width: 345px;
-  height: 550px;
+  right: 0;
+  width: 300px;
+  height: 450px;
   background: var(--card-bg);
   border-radius: var(--border-radius-medium);
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
@@ -843,14 +847,38 @@ html.dark .hero-image {
   border-bottom: 1px solid var(--border-color);
   /* ... */
 }
+.chat-header button {
+  background: transparent;
+  border: none;
+  border-radius: 50%; /* Makes the button a circle */
+  width: 32px;
+  height: 32px;
+  font-size: 20px;
+  font-weight: var(--font-weight-bold);
+  line-height: 1;
+  cursor: pointer;
+  color: var(--text-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.chat-header button:hover {
+  background: var(--section-bg-color); /* Adds a subtle background on hover */
+  transform: rotate(90deg); /* Adds a nice animation */
+  color: var(--heading-color);
+}
 .chat-body {
   flex-grow: 1;
   padding: 1rem;
   overflow-y: auto;
 }
 .chat-message {
-  margin-bottom: 1rem;
-  display: flex;
+  display: flex; /* Use flexbox for alignment */
+  align-items: flex-start; /* Align items to the top */
+  margin-bottom: 10px; /* Space between messages */
+  max-width: 85%; /* Limit width of messages */
 }
 .chat-message p {
   padding: 0.75rem 1rem;
@@ -858,17 +886,91 @@ html.dark .hero-image {
   max-width: 80%;
   line-height: 1.5;
 }
+/* User's messages (blue background, right-aligned) */
 .chat-message.user {
-  justify-content: flex-end;
+  justify-content: flex-end; /* Push user's message to the right */
+  margin-left: auto; /* Ensure it stays on the right */
+  padding-left: 20px; /* Space from the left edge */
 }
 .chat-message.user p {
-  background: var(--primary-color);
+  background: var(
+    --primary-color
+  ); /* Use your primary color for user's message */
   color: var(--white-color);
-  border-bottom-right-radius: 4px;
+  border-radius: 18px 18px 0 18px; /* Rounded corners, sharp bottom-right */
+  padding: 10px 15px;
+  word-wrap: break-word; /* Ensure long words wrap */
 }
+/* AI's messages (grey background, left-aligned, with chat head) */
+.chat-message.ai {
+  justify-content: flex-start; /* Push AI's message to the left */
+  margin-right: auto; /* Ensure it stays on the left */
+  padding-right: 20px; /* Space from the right edge */
+}
+
 .chat-message.ai p {
-  background: var(--section-bg-color);
-  border-bottom-left-radius: 4px;
+  background: var(
+    --section-bg-color
+  ); /* Use a subtle background for AI's message */
+  color: var(--text-color);
+  border-radius: 18px 18px 18px 0; /* Rounded corners, sharp bottom-left */
+  padding: 10px 15px;
+  word-wrap: break-word;
+}
+/* --- AI Chat Head for Each AI Message --- */
+.chat-message.ai .chat-avatar {
+  width: 32px; /* Smaller avatar for individual messages */
+  height: 32px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 8px; /* Space between avatar and message bubble */
+  flex-shrink: 0; /* Prevent avatar from shrinking */
+  position: relative; /* For positioning the online dot */
+  border: 1px solid var(--secondary-color); /* Small border */
+}
+.chat-message.ai .chat-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* --- Online Dot Style for Message Avatars --- */
+.chat-message.ai .chat-avatar .online-dot {
+  position: absolute;
+  bottom: 0px; /* Position at bottom right of avatar */
+  right: 0px;
+  width: 8px; /* Size of the dot */
+  height: 8px;
+  background-color: #4caf50; /* Green for online */
+  border-radius: 50%;
+  border: 1px solid var(--white-color); /* Small white border */
+}
+.chat-header .chat-head-image {
+  /* Target the header image specifically */
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 10px;
+  border: 2px solid var(--secondary-color);
+  flex-shrink: 0;
+  position: relative; /* Important for positioning the online dot */
+}
+.chat-header .chat-head-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* --- Online Dot Style for Header Image --- */
+.chat-header .chat-head-image .online-dot {
+  position: absolute;
+  bottom: 0px; /* Adjust as needed */
+  right: 0px; /* Adjust as needed */
+  width: 12px; /* Larger dot for header */
+  height: 12px;
+  background-color: #4caf50; /* Green for online */
+  border-radius: 50%;
+  border: 2px solid var(--white-color); /* White border to stand out */
 }
 .chat-footer form {
   display: flex;
@@ -896,9 +998,56 @@ html.dark .hero-image {
   width: 8px;
   border-radius: 50%;
   background-color: var(--p-color);
-  display: inline-block;
+  display: flex;
+  align-items: center;
   margin: 0 2px;
   animation: bounce 1.4s infinite ease-in-out both;
+}
+/* --- NEW: Chat Preview Bubble --- */
+.chat-preview-bubble {
+  position: inherit;
+  bottom: 80px; /* Position it above the toggle button */
+  right: 0;
+  display: flex;
+  align-items: center;
+  background: var(--card-bg);
+  padding: 10px 15px;
+  border-radius: var(--border-radius-large);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  border: 1px solid var(--border-color);
+}
+
+.chat-preview-bubble .chat-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 12px;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.chat-preview-bubble .chat-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.chat-preview-bubble .chat-avatar .online-dot {
+  position: absolute;
+  bottom: 1px;
+  right: 1px;
+  width: 10px;
+  height: 10px;
+  background-color: #4caf50;
+  border-radius: 50%;
+  border: 2px solid var(--card-bg);
+}
+
+.chat-preview-bubble .preview-text {
+  color: var(--heading-color);
+  font-weight: var(--font-weight-medium);
 }
 .chat-message.ai.thinking span:nth-of-type(1) {
   animation-delay: -0.32s;
@@ -915,4 +1064,88 @@ html.dark .hero-image {
   40% {
     transform: scale(1);
   }
+}
+/* --- NEW: Styles for the Initial Welcome Form --- */
+.info-form {
+  padding: 1.5rem 1rem;
+  text-align: center;
+}
+
+.info-form p {
+  color: var(--heading-color);
+  font-weight: var(--font-weight-medium);
+  margin-bottom: 1.5rem;
+}
+
+.info-form input {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: var(--border-radius-small);
+  border: 1px solid var(--border-color);
+  background: var(--body-bg);
+  color: var(--text-color);
+  margin-bottom: 0.75rem;
+  font-family: inherit;
+  text-align: center;
+}
+
+.info-form input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--secondary-color);
+}
+
+/* This styles the button and adds the requested space */
+.info-form button {
+  width: 100%;
+  padding: 0.75rem;
+  border: none;
+  border-radius: var(--border-radius-small);
+  background: var(--secondary-color);
+  color: var(--white-color);
+  font-weight: var(--font-weight-bold);
+  cursor: pointer;
+  margin-top: 1rem; /* This adds space above the button */
+  transition: background-color 0.3s;
+}
+
+.info-form button:hover {
+  background: var(--primary-color);
+}
+/* --- NEW: Styles for Chat Head Image --- */
+.chat-header {
+  display: flex; /* Makes elements align horizontally */
+  align-items: center; /* Vertically centers items */
+  padding: 0.8rem 1rem;
+  background: var(--card-bg); /* Match your card background */
+  border-bottom: 1px solid var(--border-color);
+  justify-content: space-between; /* Pushes name/image to left, close button to right */
+}
+
+.chat-header h4 {
+  margin: 0; /* Remove default margin */
+  flex-grow: 1; /* Allows title to take up available space */
+  text-align: center; /* Center the title */
+  color: var(--heading-color);
+  font-size: 1.1em;
+}
+
+.chat-head-image {
+  width: 40px; /* Size of the circular image */
+  height: 40px;
+  border-radius: 50%; /* Makes it circular */
+  overflow: hidden; /* Clips the image to the circle */
+  margin-right: 10px; /* Space between image and title */
+  border: 2px solid var(--secondary-color); /* Small border around the image */
+  flex-shrink: 0; /* Prevents image from shrinking */
+}
+
+.chat-head-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures image covers the circle without distortion */
+}
+
+/* Adjust the close button to be on the right */
+.chat-header button {
+  margin-left: 10px; /* Space between title and close button */
 }
