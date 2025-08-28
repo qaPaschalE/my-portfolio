@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "react-toastify";
-import { IoMdChatboxes, IoMdClose } from "react-icons/io";
 
 interface Message {
   sender: "user" | "ai";
@@ -29,7 +28,7 @@ const ChatWidget: React.FC = () => {
       if (!isOpen && !showPreview) {
         setShowPreview(true);
       }
-    }, 12000);
+    }, 5000);
 
     return () => clearTimeout(timer);
   }, []);
