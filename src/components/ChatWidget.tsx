@@ -21,7 +21,7 @@ const ChatWidget: React.FC = () => {
   const chatBodyRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const n8nWebhookUrl = "https://chepsyop.app.n8n.cloud/webhook/chat"; // Make sure to use your public URL
+  const n8nWebhookUrl = "https://unsecurely-engrossing-eladia.ngrok-free.dev/webhook/chat"; // Make sure to use your public URL
 
   useEffect(() => {
     const timer = setTimeout(() => {
